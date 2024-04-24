@@ -101,5 +101,6 @@ void ShoppingCart::PrintDescriptions() {
         i->PrintItemDescription();
         cout << endl;
     }
+    court<<endl;
 }
 
