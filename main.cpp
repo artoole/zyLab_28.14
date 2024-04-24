@@ -5,12 +5,14 @@ using namespace std;
 
 #include "ShoppingCart.h"
 
- 
+
 
 void PrintMenu() {
-cout<<"MENU"<<endl;
-cout<<"a - Add item to cart\nd - Remove item from cart\nc - Change item quantity\ni - Output items' descriptions\no - Output shopping cart\nq - Quit"<<endl;
-cout<<"Choose an option: ";
+   cout<<"MENU"<<endl;
+   cout<<"a - Add item to cart\nd - Remove item from cart\nc - Change item quantity\ni - Output items' descriptions\no - Output shopping cart\nq - Quit"<<endl;
+   cout<<endl;
+   
+
 }
 
 void ExecuteMenu(char option, ShoppingCart& theCart) {
@@ -53,13 +55,12 @@ void ExecuteMenu(char option, ShoppingCart& theCart) {
 		{
 			theCart.PrintTotal();
 		}
-		else if(option=='q')
-		{
-		}
-		else
-		{
-				cout<<"Invalid choice"<<endl;
-			}
+		else{
+		   cout<<"Choose an option: ";  
+		   cout<<endl;
+		 }
+
+		
 	
 }
 
@@ -79,16 +80,18 @@ cout<<endl;
 char ch;
 
 
-do
+PrintMenu();
+cin>>ch;
+while(ch!='q')
 {
-	PrintMenu();
-	cin>>ch;
+	
 	//clear input buffer before prompting for second item
 	cin.ignore();
 	ExecuteMenu(ch,cart);
 	
+	
 }
-while(ch!='q');
+
 
 
  
