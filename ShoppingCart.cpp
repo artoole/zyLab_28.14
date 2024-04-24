@@ -96,11 +96,12 @@ void ShoppingCart::PrintTotal() {
 void ShoppingCart::PrintDescriptions() {
     cout << "OUTPUT ITEMS' DESCRIPTIONS" << endl;
     cout << customerName << "'s Shopping Cart - " << currentDate << endl;
+    cout<<endl;
     cout << "Item Descriptions" << endl;
     for (auto i = cartItems.begin(); i != cartItems.end(); ++i) {
         i->PrintItemDescription();
         cout << endl;
     }
-    court<<endl;
+    cout<<endl;
 }
 
