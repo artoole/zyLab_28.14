@@ -1,90 +1,97 @@
-
 #include <iostream>
-#include <limits>
-#include "ShoppingCart.h"
-
+#include <iomanip>
 using namespace std;
 
-// Function prototypes
-void PrintMenu();
-void ExecuteMenu(char option, ShoppingCart& theCart);
 
-int main() {
-    string customerName, currentDate;
-    char menuOption;
+#include "ShoppingCart.h"
 
-    cout << "Enter customer's name:" << endl;
-    getline(cin, customerName);
-    cout << "Enter today's date:" << endl;
-    getline(cin, currentDate);
-
-    ShoppingCart myCart(customerName, currentDate);
-    cout << "Customer name: " << customerName << endl;
-    cout << "Today's date: " << currentDate << endl;
-
-    do {
-        PrintMenu();
-        cin >> menuOption;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
-
-        // As long as we don't want to quit, keep executing the menu commands
-        if (menuOption != 'q') {
-            ExecuteMenu(menuOption, myCart);
-        }
-
-    } while (menuOption != 'q');
-
-    return 0;
-}
+ 
 
 void PrintMenu() {
-    cout << "\nMENU" << endl;
-    cout << "a - Add item to cart" << endl;
-    cout << "d - Remove item from cart" << endl;
-    cout << "c - Change item quantity" << endl;
-    cout << "i - Output items' descriptions" << endl;
-    cout << "o - Output shopping cart" << endl;
-    cout << "q - Quit" << endl;
-    cout << "\nChoose an option: ";
+cout<<"MENU"<<endl;
+cout<<"a - Add item to cart\nd - Remove item from cart\nc - Change item quantity\ni - Output items' descriptions\no - Output shopping cart\nq - Quit"<<endl;
+cout<<"Choose an option: ";
 }
 
 void ExecuteMenu(char option, ShoppingCart& theCart) {
-    string itemName, itemDescription;
-    int itemPrice, itemQuantity;
+	string name,descr;
+	int price,quantity;
+	if(option=='a')
+	{
+			cout << "Enter the item name:" << endl;
+			getline(cin, name);
+			cout << "Enter the item description:" << endl;
+			getline(cin, descr);
+			cout << "Enter the item price:" << endl;
+			cin >> price;
+			cout << "Enter the item quantity:" << endl;
+			cin >> quantity;
+			
+			ItemToPurchase item(name,descr,price,quantity);
+			theCart.AddItem(item);
+		}
+		else if(option=='d')
+		{
+			cout << "Enter the item name to remove:" << endl;
+			getline(cin, name);
+			theCart.RemoveItem(name);
+			
+		}
+		else if(option=='c')
+		{
+			cout << "Enter the item name:" << endl;
+			getline(cin, name);
+			cout << "Enter the new quantity:" << endl;
+			cin >> quantity;
+			theCart.ModifyItem(name,"none",0,quantity);
+			}
+			else if(option=='i')
+			{
+			theCart.PrintDescriptions();
+			}
+			else if(option=='o')
+		{
+			theCart.PrintTotal();
+		}
+		else if(option=='q')
+		{
+		}
+		else
+		{
+				cout<<"Invalid choice"<<endl;
+			}
+	
+}
 
-    switch (option) {
-        case 'a': {
-            // Add item to cart logic here
-            cout << "ADD ITEM TO CART" << endl;
-            break;
-        }
-        case 'd': {
-            // Remove item from cart logic here
-            cout << "REMOVE ITEM FROM CART" << endl;
-            break;
-        }
-        case 'c': {
-            // Change item quantity logic here
-            cout << "CHANGE ITEM QUANTITY" << endl;
-            break;
-        }
-        case 'i': {
-            // Output items' descriptions logic here
-            cout << "OUTPUT ITEMS' DESCRIPTIONS" << endl;
-            break;
-        }
-        case 'o': {
-            // Output shopping cart logic here
-            cout << "OUTPUT SHOPPING CART" << endl;
-            break;
-        }
-        case 'q': {
-            // No need to do anything here as the main loop will handle quitting
-            break;
-        }
-        default: {
-            cout << "Invalid choice. Please try again." << endl;
-            break;
-        }
-    }
+int main() {
+
+string cname,tdate;
+
+cout<<"Enter customer's name:"<<endl;
+getline(cin,cname);
+cout<<"Enter today's date:"<<endl;
+getline(cin,tdate);
+ShoppingCart cart(cname,tdate);
+cout<<endl;
+cout<<"Customer name: "<<cname<<endl;
+cout<<"Today's date: "<<tdate<<endl;
+cout<<endl;
+char ch;
+
+
+do
+{
+	PrintMenu();
+	cin>>ch;
+	//clear input buffer before prompting for second item
+	cin.ignore();
+	ExecuteMenu(ch,cart);
+	
+}
+while(ch!='q');
+
+
+ 
+
+return 0;
 }
