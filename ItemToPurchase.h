@@ -1,60 +1,29 @@
+#ifndef ITEM_TO_PURCHASE_H
+#define ITEM_TO_PURCHASE_H
 
-#include <iostream>
+#include <string>
 using namespace std;
 
-#include "ItemToPurchase.h"
+class ItemToPurchase {
+public:
+ItemToPurchase(); //default constructor
+ItemToPurchase(string name,string descr,int price,int quantity);
+void SetName(string name);
+string GetName() const;
+void SetPrice(int price);
+int GetPrice() const;
+void SetQuantity(int quantity);
+int GetQuantity() const;
+void SetDescription(string descr);
+string GetDescription() const;
+void PrintItemCost();
+void PrintItemDescription();
 
-ItemToPurchase::ItemToPurchase() {
-itemName = "none";
-itemDescription="none";
-itemPrice = 0;
-itemQuantity = 0;
-}
+private:
+string itemName;
+string itemDescription;
+int itemPrice;
+int itemQuantity;
+};
 
-ItemToPurchase::ItemToPurchase(string name,string descr,int price,int quantity)
-{
-	itemName=name;
-	itemDescription=descr;
-	itemPrice=price;
-	itemQuantity=quantity;
-}
-void ItemToPurchase::SetName(string name) {
-itemName = name;
-}
-
-string ItemToPurchase::GetName() const {
-return itemName;
-}
-
-void ItemToPurchase::SetPrice(int price) {
-itemPrice = price;
-}
-
-int ItemToPurchase::GetPrice() const {
-return itemPrice;
-}
-
-void ItemToPurchase::SetQuantity(int quantity) {
-itemQuantity = quantity;
-}
-
-int ItemToPurchase::GetQuantity() const {
-return itemQuantity;
-}
-
-void ItemToPurchase::SetDescription(string descr)
-{
-	itemDescription=descr;
-}
-string ItemToPurchase::GetDescription() const
-{
-	return itemDescription;
-}
-void ItemToPurchase::PrintItemCost()
-{
-	cout<<itemName<<" "<<itemQuantity<<" @ $"<<itemPrice<<" = $"<<itemQuantity*itemPrice;
-}
-void ItemToPurchase::PrintItemDescription()
-{
-	cout<<itemName<<": "<<itemDescription;
-}
+#endif
