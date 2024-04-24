@@ -78,7 +78,7 @@ int ShoppingCart::GetCostOfCart() {
 }
 
 void ShoppingCart::PrintTotal() {
-    cout<<"OUTPUT SHOPPING CART"<<endl;
+    cout<< "OUTPUT SHOPPING CART" <<endl;
    cout << customerName << "'s Shopping Cart - " << currentDate << endl;
    cout << "Number of Items: " << GetNumItemsInCart() << endl;
    cout << endl;
