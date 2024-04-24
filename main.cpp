@@ -12,6 +12,7 @@ void PrintMenu() {
    cout<<"a - Add item to cart\nd - Remove item from cart\nc - Change item quantity\ni - Output items' descriptions\no - Output shopping cart\nq - Quit"<<endl;
    cout<<endl;
    
+   
 
 }
 
@@ -56,7 +57,7 @@ void ExecuteMenu(char option, ShoppingCart& theCart) {
 			theCart.PrintTotal();
 		}
 		else{
-		   cout<<"Choose an option: ";  
+		   cout<<"Choose an option:";  
 		   cout<<endl;
 		 }
 
@@ -81,6 +82,7 @@ char ch;
 
 
 PrintMenu();
+cout<<"Choose an option:"<<endl;
 cin>>ch;
 while(ch!='q')
 {
@@ -88,7 +90,7 @@ while(ch!='q')
 	//clear input buffer before prompting for second item
 	cin.ignore();
 	ExecuteMenu(ch,cart);
-	
+	cin >> ch;
 	
 }
 
