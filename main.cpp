@@ -27,8 +27,10 @@ void ExecuteMenu(char option, ShoppingCart& theCart) {
 			getline(cin, descr);
 			cout << "Enter the item price:" << endl;
 			cin >> price;
+cin.ignore();
 			cout << "Enter the item quantity:" << endl;
 			cin >> quantity;
+cin.ignore();
 			
 			ItemToPurchase item(name,descr,price,quantity);
 			theCart.AddItem(item);
@@ -46,6 +48,7 @@ void ExecuteMenu(char option, ShoppingCart& theCart) {
 			getline(cin, name);
 			cout << "Enter the new quantity:" << endl;
 			cin >> quantity;
+cin.ignore();
 			theCart.ModifyItem(name,"none",0,quantity);
 			}
 			else if(option=='i')
@@ -88,9 +91,10 @@ while(ch!='q')
 {
 	
 	//clear input buffer before prompting for second item
-	cin.ignore();
+	
 	ExecuteMenu(ch,cart);
 	cin >> ch;
+cin.ignore();
 	
 }
 
