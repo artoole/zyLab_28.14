@@ -6,7 +6,7 @@ using namespace std;
 #include "ShoppingCart.h"
 
 
-
+bool showMenu = true;
 void PrintMenu() {
    cout<<"MENU"<<endl;
    cout<<"a - Add item to cart\nd - Remove item from cart\nc - Change item quantity\ni - Output items' descriptions\no - Output shopping cart\nq - Quit"<<endl;
@@ -21,6 +21,7 @@ void ExecuteMenu(char option, ShoppingCart& theCart) {
 	int price,quantity;
 	if(option=='a')
 	{
+	      cout << "ADD ITEM TO CART" << endl;
 			cout << "Enter the item name:" << endl;
 			getline(cin, name);
 			cout << "Enter the item description:" << endl;
@@ -31,19 +32,21 @@ cin.ignore();
 			cout << "Enter the item quantity:" << endl;
 			cin >> quantity;
 cin.ignore();
-			
+			cout << endl;
 			ItemToPurchase item(name,descr,price,quantity);
 			theCart.AddItem(item);
 		}
 		else if(option=='d')
 		{
-			cout << "Enter the item name to remove:" << endl;
+		   cout << "REMOVE ITEM FROM CART"<<endl;
+			cout << "Enter name of item to remove:";
 			getline(cin, name);
 			theCart.RemoveItem(name);
-			
+			cout << endl;
 		}
 		else if(option=='c')
 		{
+		   cout << "CHANGE ITEM QUANTITY" << endl;
 			cout << "Enter the item name:" << endl;
 			getline(cin, name);
 			cout << "Enter the new quantity:" << endl;
@@ -59,12 +62,8 @@ cin.ignore();
 		{
 			theCart.PrintTotal();
 		}
-		else{
-		   cout<<"Choose an option:";  
-		   cout<<endl;
-		 }
 
-		
+		showMenu = true;
 	
 }
 
@@ -79,23 +78,25 @@ getline(cin,tdate);
 ShoppingCart cart(cname,tdate);
 cout<<endl;
 cout<<"Customer name: "<<cname<<endl;
-cout<<"Today's date: "<<tdate<<endl;
-cout<<endl;
-char ch;
-
-
-PrintMenu();
-cout<<"Choose an option:"<<endl;
-cin>>ch;
+cout<<"Today's date: "<<tdate<<endl <<endl;
+char ch = ' ';
+showMenu = true;
 while(ch!='q')
 {
-	
+	if(showMenu){
+	   PrintMenu();
+	   showMenu = false;
+	}
 	//clear input buffer before prompting for second item
-	
-	ExecuteMenu(ch,cart);
+	cout<<"Choose an option:"<<endl;
 	cin >> ch;
-cin.ignore();
-	
+	cin.ignore();
+	if(ch == 'q'){
+	   break;
+	}
+	else if(ch == 'a' || ch == 'c' || ch == 'd' || ch == 'i' || ch == 'o'){
+	  ExecuteMenu(ch,cart);	 
+	}
 }
 
 
