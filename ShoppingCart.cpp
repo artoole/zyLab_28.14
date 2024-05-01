@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cctype>
+#include <algorithm>
 #include "ItemToPurchase.h"  // Include the header instead of the .cpp file
 #include "ShoppingCart.h"
 
@@ -28,36 +30,36 @@ void ShoppingCart::AddItem(ItemToPurchase item) {
 
 void ShoppingCart::RemoveItem(string itemName) {
     bool found = false;
-    for (auto i = cartItems.begin(); i != cartItems.end(); ++i) {
-        if (i->GetName() == itemName) {
+    cout << endl;
+    for (size_t i = 0; i != cartItems.size(); ++i) {
+        if (cartItems[i].GetName() == itemName) {
             found = true;
-            cartItems.erase(i);
-            cout << "Item is Removed." << endl;
+            cartItems.erase(cartItems.begin() + i);
             break;
         }
     }
     if (!found) {
-        cout << "Item not found in cart." << endl;
+        cout << "Item not found in cart. Nothing removed." << endl;
     }
 }
 
 void ShoppingCart::ModifyItem(string name, string descr, int price, int quantity) {
     bool found = false;
-    for (auto i = cartItems.begin(); i != cartItems.end(); ++i) {
-        if (i->GetName() == name) {
+    for (int i = 0; i != cartItems.size(); ++i) {
+        if (cartItems.at(i).GetName() == name) {
             found = true;
             if (descr != "none")
-                i->SetDescription(descr);
+                cartItems.at(i).SetDescription(descr);
             if (price != 0)
-                i->SetPrice(price);
+                cartItems.at(i).SetPrice(price);
             if (quantity != 0)
-                i->SetQuantity(quantity);
+                cartItems.at(i).SetQuantity(quantity);
             cout << "Item is Modified." << endl;
             break;
         }
     }
     if (!found) {
-        cout << "Item not found in cart." << endl;
+        cout << "Item not found in cart. Nothing modified." << endl <<endl;
     }
 }
 
@@ -84,13 +86,12 @@ void ShoppingCart::PrintTotal() {
    cout << endl;
    if (GetNumItemsInCart() == 0){
       cout << "SHOPPING CART IS EMPTY" << endl;
-       cout << endl;
    }
     for (auto i = cartItems.begin(); i != cartItems.end(); ++i) {
         i->PrintItemCost();
         cout << endl;
     }
-    cout << "Total: $" << GetCostOfCart() << endl;
+    cout <<endl << "Total: $" << GetCostOfCart() << endl <<endl;
 }
 
 void ShoppingCart::PrintDescriptions() {
