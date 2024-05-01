@@ -27,4 +27,3 @@ private:
 };
 
 #endif // SHOPPING_CART_H
-
