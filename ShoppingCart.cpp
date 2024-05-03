@@ -82,7 +82,7 @@ int ShoppingCart::GetCostOfCart() {
 void ShoppingCart::PrintTotal() {
     cout<< "OUTPUT SHOPPING CART" <<endl;
    cout << customerName << "'s Shopping Cart - " << currentDate << endl;
-   cout << "number of items: " << GetNumItemsInCart() << endl;
+   cout << "Number of Items: " << GetNumItemsInCart() << endl;
    cout << endl;
    if (GetNumItemsInCart() == 0){
       cout << "SHOPPING CART IS EMPTY" << endl;
