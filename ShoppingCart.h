@@ -1,6 +1,5 @@
 #ifndef SHOPPING_CART_H
 #define SHOPPING_CART_H
-
 #include <string>
 #include <vector>
 #include "ItemToPurchase.h" // Ensure this file has include guards too.
@@ -19,7 +18,6 @@ public:
     int GetCostOfCart();
     void PrintTotal();
     void PrintDescriptions();
-
 private:
     std::string customerName;
     std::string currentDate;
